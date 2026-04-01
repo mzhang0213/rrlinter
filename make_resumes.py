@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-from utils import PDFMetadataEditor
+from rrlinter import PDFMetadataEditor
 
 load_dotenv()
 

@@ -12,3 +12,8 @@ __pycache__/
 .DS_Store
 
 .env
+
+# Build/dist
+dist/
+build/
+*.egg-info/

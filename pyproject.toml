@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rrlinter"
+version = "0.1.0"
+description = "LINT PDF metadata for resumes (title, author, keywords, etc.)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+dependencies = ["pypdf>=3.0", "python-dotenv>=0.19"]
+
+[project.scripts]
+rrlinter = "rrlinter.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mzhang0213/rrlinter"

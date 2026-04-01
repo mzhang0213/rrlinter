@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from main import PDFMetadataEditor
+from utils import PDFMetadataEditor
 
 RESUMES = "/Users/mzhang/Documents/resumes"
 
@@ -14,7 +14,6 @@ folder_choice = RESUMES_folders[int(input(f"which 1..{len(RESUMES_folders)}\n"))
 folder = os.path.join(RESUMES,folder_choice)
 
 files = [p for p in Path(folder).rglob("*") if p.is_file()]
-
 for f in files:
     editor = PDFMetadataEditor(str(f))
     editor.set_author("Michael Zhang")
