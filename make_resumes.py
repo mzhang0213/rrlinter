@@ -1,9 +1,12 @@
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 
-from main import PDFMetadataEditor
+from utils import PDFMetadataEditor
 
-RESUMES = "/Users/mzhang/Documents/resumes"
+load_dotenv()
+
+RESUMES = os.getenv("RESUME_PATH")
 
 RESUMES_folders = os.listdir(RESUMES)
 
@@ -18,15 +21,15 @@ files = [p for p in Path(folder).rglob("*") if p.is_file() and not p.name.starts
 for f in files:
     new_folder = f.parent / f.stem
     new_folder.mkdir(exist_ok=True)
-    new_file = new_folder / "MichaelJZhang-RESUME.pdf"
+    new_file = new_folder / (os.getenv("PDF_NAME") + (".pdf" if os.getenv("PDF_NAME")[:-4] != ".pdf" else ""))
 
     editor = PDFMetadataEditor(str(f))
-    editor.set_author("Michael Zhang")
-    editor.set_creator("Michael Zhang")
+    editor.set_author(os.getenv("MY_NAME"))
+    editor.set_creator(os.getenv("MY_NAME"))
     editor.set_keywords("")
     editor.set_producer("")
     editor.set_subject("")
-    editor.set_title("MichaelJZhang-RESUME")
+    editor.set_title(os.getenv("PDF_NAME"))
     editor.save(str(new_file))
 
     f.unlink()
