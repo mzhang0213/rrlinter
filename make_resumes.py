@@ -19,6 +19,8 @@ folder = os.path.join(RESUMES,folder_choice)
 files = [p for p in Path(folder).rglob("*") if p.is_file() and not p.name.startswith(".") and p.suffix == ".pdf"]
 
 for f in files:
+    if os.path.isdir(f):
+        continue
     new_folder = f.parent / f.stem
     new_folder.mkdir(exist_ok=True)
     new_file = new_folder / (os.getenv("PDF_NAME") + (".pdf" if os.getenv("PDF_NAME")[:-4] != ".pdf" else ""))

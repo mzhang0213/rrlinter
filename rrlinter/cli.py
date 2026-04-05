@@ -27,6 +27,8 @@ def make():
     my_name = os.getenv("MY_NAME")
 
     for f in files:
+        if os.path.isdir(f):
+            continue
         new_folder = f.parent / f.stem
         new_folder.mkdir(exist_ok=True)
         new_file = new_folder / (pdf_name + (".pdf" if pdf_name[-4:] != ".pdf" else ""))
